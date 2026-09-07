@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apps — Mehedi Khan</title>
+  <meta name="description"
+    content="Explore iOS, iPadOS, and watchOS apps created by Mehedi Khan. Beautiful, distraction-free utilities built with a local-first philosophy and zero tracking.">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Apps by Mehedi Khan">
+  <meta property="og:description"
+    content="Explore Final Countdown and Point Taker. Beautiful iOS and watchOS utilities built with zero tracking.">
+  <meta property="og:type" content="website">
+
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(22, 30, 49, 0.72);
+      --card-hover-bg: rgba(27, 37, 61, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(56, 189, 248, 0.28);
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --accent-glow: rgba(56, 189, 248, 0.14);
+      --accent-soft: rgba(56, 189, 248, 0.08);
+      --highlight: #a855f7;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+      /* Final Countdown colors */
+      --fc-mint: #8ce3bd;
+      --fc-sky: #a8d1f2;
+      --fc-periwinkle: #6675d6;
+      --fc-glow: rgba(102, 117, 214, 0.18);
+      --fc-border: rgba(102, 117, 214, 0.28);
+
+      /* Point Taker colors */
+      --pt-gold: #ffd60a;
+      --pt-amber: #ca8a04;
+      --pt-glow: rgba(255, 214, 10, 0.16);
+      --pt-border: rgba(255, 214, 10, 0.28);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-color: #f8fafc;
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --card-hover-bg: #ffffff;
+        --card-border: rgba(0, 0, 0, 0.07);
+        --card-border-hover: rgba(2, 132, 199, 0.25);
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --accent: #0284c7;
+        --accent-hover: #0369a1;
+        --accent-glow: rgba(2, 132, 199, 0.12);
+        --accent-soft: rgba(2, 132, 199, 0.06);
+        --highlight: #9333ea;
+
+        --fc-glow: rgba(80, 95, 196, 0.1);
+        --fc-border: rgba(80, 95, 196, 0.2);
+
+        --pt-glow: rgba(202, 138, 4, 0.1);
+        --pt-border: rgba(202, 138, 4, 0.25);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image:
+        radial-gradient(at 15% 10%, var(--accent-glow) 0px, transparent 48%),
+        radial-gradient(at 85% 20%, rgba(168, 85, 247, 0.1) 0px, transparent 45%),
+        radial-gradient(at 50% 90%, rgba(56, 189, 248, 0.08) 0px, transparent 50%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header & Navigation */
+    header {
+      padding: 2.25rem 0 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.03);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-links a.active {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+      padding-bottom: 5rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding-top: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: fit-content;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      line-height: 1.65;
+    }
+
+    /* Apps Grid */
+    .apps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card:hover {
+      transform: translateY(-3px);
+      background-color: var(--card-hover-bg);
+      box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.28);
+    }
+
+    .card-fc:hover {
+      border-color: var(--fc-border);
+    }
+
+    .card-pt:hover {
+      border-color: var(--pt-border);
+    }
+
+    /* Ambient card glow behind icon */
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.45;
+      filter: blur(60px);
+      transition: opacity 0.3s ease;
+    }
+
+    .card-fc::before {
+      background: radial-gradient(circle, var(--fc-glow) 0%, transparent 70%);
+    }
+
+    .card-pt::before {
+      background: radial-gradient(circle, var(--pt-glow) 0%, transparent 70%);
+    }
+
+    .app-card:hover::before {
+      opacity: 0.75;
+    }
+
+    /* Card Top Header */
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .app-logo {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      /* Apple squircle aesthetic */
+      object-fit: cover;
+      display: block;
+      box-shadow:
+        0 10px 20px -3px rgba(0, 0, 0, 0.35),
+        0 3px 6px -1px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .app-card:hover .app-logo {
+      transform: scale(1.04);
+      box-shadow:
+        0 14px 28px -4px rgba(0, 0, 0, 0.45),
+        0 4px 8px -1px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    }
+
+    .app-meta {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .platform-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .platform-badge {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.22rem 0.55rem;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--accent-glow);
+    }
+
+    .card-fc .platform-badge {
+      background: rgba(102, 117, 214, 0.12);
+      color: #9bb0ff;
+      border-color: rgba(102, 117, 214, 0.25);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .card-fc .platform-badge {
+        background: rgba(80, 95, 196, 0.1);
+        color: #4353b3;
+        border-color: rgba(80, 95, 196, 0.2);
+      }
+    }
+
+    .card-pt .platform-badge {
+      background: rgba(255, 214, 10, 0.1);
+      color: #ffd60a;
+      border-color: rgba(255, 214, 10, 0.25);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .card-pt .platform-badge {
+        background: rgba(202, 138, 4, 0.1);
+        color: #a16e03;
+        border-color: rgba(202, 138, 4, 0.25);
+      }
+    }
+
+    .app-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .app-tagline {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .app-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Key Feature Highlights */
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.85rem;
+      list-style: none;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.925rem;
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid var(--card-border);
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .feature-item {
+        background: rgba(241, 245, 249, 0.65);
+      }
+    }
+
+    .feature-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-fc .feature-icon {
+      color: var(--fc-sky);
+    }
+
+    .card-pt .feature-icon {
+      color: var(--pt-gold);
+    }
+
+    .feature-text strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.925rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .feature-text span {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.45;
+      display: block;
+    }
+
+    /* Tags Cloud */
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag-chip {
+      font-size: 0.775rem;
+      font-weight: 500;
+      padding: 0.3rem 0.65rem;
+      border-radius: 8px;
+      background: var(--card-border);
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+    }
+
+    /* Card Actions Footer */
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.15rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-color);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      opacity: 0.95;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+      border: 1px solid var(--card-border);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .btn-secondary {
+        background: rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary svg,
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .tech-specs {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Philosophy / Guarantees Section */
+    .philosophy-section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .philosophy-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .philosophy-header h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .philosophy-header p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pillar-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .pillar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .pillar-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      border-top: 1px solid var(--card-border);
+      padding: 2.5rem 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    footer a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .app-card {
+        padding: 1.5rem;
+        border-radius: 18px;
+      }
+
+      .app-header {
+        gap: 1.15rem;
+      }
+
+      .app-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+      }
+
+      .app-title {
+        font-size: 1.5rem;
+      }
+
+      .features-list {
+        grid-template-columns: 1fr;
+      }
+
+      .card-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .action-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .action-group .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tech-specs {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav aria-label="Main Navigation">
+        <a href="../" class="logo">MK<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="../">Home</a></li>
+          <li><a href="../#contact">Contact</a></li>
+          <li> | </li>
+          <li><a href="#" class="active" aria-current="page">Apps</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Indie Software Lab
+      </div>
+      <h1>Designed with Focus & Privacy in Mind.</h1>
+      <p class="lead">
+        Distraction-free iOS, iPadOS, and watchOS utilities engineered around a strict local-first standard. No
+        accounts, no advertising SDKs, and zero telemetry.
+      </p>
+    </section>
+
+    <!-- Apps List -->
+    <section class="apps-list" aria-label="Applications Showcase">
+
+      <!-- App 1: Final Countdown -->
+      <article class="app-card card-fc" id="final-countdown">
+        <div class="app-header">
+          <div class="icon-wrapper">
+            <img src="assets/final-countdown.png" alt="Final Countdown App Icon" class="app-logo" width="88" height="88"
+              loading="eager" />
+          </div>
+          <div class="app-meta">
+            <div class="platform-badges">
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">iPadOS</span>
+              <span class="platform-badge">watchOS</span>
+              <span class="platform-badge">Widgets</span>
+              <span class="platform-badge">Live Activities</span>
+            </div>
+            <h2 class="app-title">Final Countdown</h2>
+            <p class="app-tagline">Serene interval routines & celebration countdowns</p>
+          </div>
+        </div>
+
+        <p class="app-description">
+          A mindful countdown and timer utility built for stretching routines, self-care intervals, and milestone
+          celebration dates. Designed to run beautifully across iPhone, iPad, Apple Watch, and the Lock Screen with
+          customizable chimes and zero distractions.
+        </p>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9"></circle>
+                <polyline points="12 7 12 12 15 15"></polyline>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Dual Countdown Engine</strong>
+              <span>Flexible duration timers with periodic chime beeps alongside fixed-date arrival countdowns with
+                celebratory confetti.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Dynamic Island & Widgets</strong>
+              <span>Interactive Live Activities with play/pause controls, plus home-screen and lock-screen accessory
+                widgets for your soonest events.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="7"></circle>
+                <polyline points="12 9 12 12 13.5 13.5"></polyline>
+                <path d="M16.51 17.35l-.35 3.83A2 2 0 0 1 14.17 23H9.83a2 2 0 0 1-1.99-1.82l-.35-3.83"></path>
+                <path d="M7.49 6.65l.35-3.83A2 2 0 0 1 9.83 1h4.34a2 2 0 0 1 1.99 1.82l.35 3.83"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Standalone Apple Watch App</strong>
+              <span>Extended runtime keep-awake sessions keep the screen visible during guided intervals without waking
+                the watch mid-routine.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>100% On-Device & Private</strong>
+              <span>Timers and events are saved strictly to local SwiftData storage. Makes zero network calls and
+                includes no analytics SDKs.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tags-row" aria-label="Feature Tags">
+          <span class="tag-chip">Self-Care Routines</span>
+          <span class="tag-chip">Interval Beeps</span>
+          <span class="tag-chip">Live Activities</span>
+          <span class="tag-chip">Lock Screen Widgets</span>
+          <span class="tag-chip">watchOS Standalone</span>
+          <span class="tag-chip">Zero Tracking</span>
+        </div>
+
+        <div class="card-actions">
+          <div class="action-group">
+            <a href="../policies/fc/privacy.html" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Privacy Policy
+            </a>
+          </div>
+          <div class="tech-specs">
+            <span>Universal App · Built with SwiftUI & SwiftData</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- App 2: Point Taker -->
+      <article class="app-card card-pt" id="point-taker">
+        <div class="app-header">
+          <div class="icon-wrapper">
+            <picture>
+              <source srcset="assets/point-taker-dark.png" media="(prefers-color-scheme: dark)">
+              <img src="assets/point-taker.png" alt="Point Taker App Icon" class="app-logo" width="88" height="88"
+                loading="eager" />
+            </picture>
+          </div>
+          <div class="app-meta">
+            <div class="platform-badges">
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">iPadOS</span>
+              <span class="platform-badge">watchOS</span>
+            </div>
+            <h2 class="app-title">Point Taker</h2>
+            <p class="app-tagline">Courtside badminton scoreboard & rally counter</p>
+          </div>
+        </div>
+
+        <p class="app-description">
+          Turns your iPhone into a courtside umpire's scoreboard. Prop it up on the sideline, tap the side that won the
+          rally, and let the app handle official BWF rally scoring, serve rotation, and deuce advantage rules so you can
+          stay focused on the shuttle.
+        </p>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Official BWF Rally Logic</strong>
+              <span>Accurate 21-point game rules, deuce advantage tracking, and the official 30-point sudden-death cap
+                with automated winner alerts.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Singles & Doubles Rotation</strong>
+              <span>Automatic serve switching and accurate odd/even service-court positioning with partner court
+                swapping for doubles.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
+                <line x1="12" y1="3" x2="12" y2="21"></line>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Arm's-Length Legibility</strong>
+              <span>High-contrast electric gold & pitch black palette with full-height tap panels designed for
+                effortless glances from across the court.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Instant Undo & Match Restore</strong>
+              <span>Rolls back mis-taps with complete score and serve recovery. Matches save to local storage after
+                every rally and restore seamlessly.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tags-row" aria-label="Feature Tags">
+          <span class="tag-chip">BWF Rally Scoring</span>
+          <span class="tag-chip">Singles & Doubles</span>
+          <span class="tag-chip">Sideline Scoreboard</span>
+          <span class="tag-chip">Apple Watch Companion</span>
+          <span class="tag-chip">1-Tap Undo</span>
+          <span class="tag-chip">Local Only</span>
+        </div>
+
+        <div class="card-actions">
+          <div class="action-group">
+            <a href="../policies/pt/privacy.html" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Privacy Policy
+            </a>
+          </div>
+          <div class="tech-specs">
+            <span>iPhone, iPad & Apple Watch · Built with SwiftUI</span>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Software Philosophy Section -->
+    <section class="philosophy-section" aria-label="Software Principles">
+      <div class="philosophy-header">
+        <h2>Built with Purpose, Not Telemetry</h2>
+        <p>Software should serve the user without silently harvesting their attention or personal data.</p>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Zero Tracking</h3>
+          <p>No advertising identifiers, no third-party trackers, and no telemetry analytics suites.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h3>Local-First</h3>
+          <p>Your timers, match scores, and settings reside on your personal hardware where they belong.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="7" r="4"></circle>
+              <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+            </svg>
+          </div>
+          <h3>No Accounts</h3>
+          <p>Full functionality available immediately upon launch with zero passwords or sign-up friction.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="year"></span> Mehedi Khan. Built with care for Apple platforms.</p>
+      <p style="margin-top: 0.5rem;">
+        <a href="../">Home</a> · <a href="mailto:mehedi@mehedikhan.com">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
