@@ -12,7 +12,7 @@
   <!-- Open Graph / Meta -->
   <meta property="og:title" content="Apps by Mehedi Khan">
   <meta property="og:description"
-    content="Explore Final Countdown and Point Taker. Beautiful iOS and watchOS utilities built with zero tracking.">
+    content="Explore Final Countdown, Point Taker, and the upcoming Hydration Break. Beautiful iOS and watchOS utilities built with zero tracking.">
   <meta property="og:type" content="website">
 
   <style>
@@ -44,6 +44,13 @@
       --pt-amber: #ca8a04;
       --pt-glow: rgba(255, 214, 10, 0.16);
       --pt-border: rgba(255, 214, 10, 0.28);
+
+      /* Hydration Break colors */
+      --hb-blue: #1f94f2;
+      --hb-aqua: #33ccf2;
+      --hb-deep: #0d599b;
+      --hb-glow: rgba(31, 148, 242, 0.16);
+      --hb-border: rgba(31, 148, 242, 0.28);
     }
 
     @media (prefers-color-scheme: light) {
@@ -67,6 +74,9 @@
 
         --pt-glow: rgba(202, 138, 4, 0.1);
         --pt-border: rgba(202, 138, 4, 0.25);
+
+        --hb-glow: rgba(13, 89, 155, 0.1);
+        --hb-border: rgba(13, 89, 155, 0.22);
       }
     }
 
@@ -261,6 +271,10 @@
       border-color: var(--pt-border);
     }
 
+    .card-hb:hover {
+      border-color: var(--hb-border);
+    }
+
     /* Ambient card glow behind icon */
     .app-card::before {
       content: '';
@@ -282,6 +296,10 @@
 
     .card-pt::before {
       background: radial-gradient(circle, var(--pt-glow) 0%, transparent 70%);
+    }
+
+    .card-hb::before {
+      background: radial-gradient(circle, var(--hb-glow) 0%, transparent 70%);
     }
 
     .app-card:hover::before {
@@ -378,6 +396,51 @@
       }
     }
 
+    .card-hb .platform-badge {
+      background: rgba(31, 148, 242, 0.12);
+      color: #7cc6ff;
+      border-color: rgba(31, 148, 242, 0.25);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .card-hb .platform-badge {
+        background: rgba(13, 89, 155, 0.09);
+        color: #0d599b;
+        border-color: rgba(13, 89, 155, 0.2);
+      }
+    }
+
+    /* Not-yet-released marker */
+    .platform-badge.upcoming {
+      background: rgba(168, 85, 247, 0.14);
+      color: #c99bff;
+      border-color: rgba(168, 85, 247, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .platform-badge.upcoming::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .platform-badge.upcoming {
+        background: rgba(147, 51, 234, 0.08);
+        color: #7e22ce;
+        border-color: rgba(147, 51, 234, 0.22);
+      }
+    }
+
+    .app-card.is-upcoming .app-logo {
+      /* No App Store listing yet, so the icon reads as a preview rather than a product shot. */
+      filter: saturate(0.92);
+    }
+
     .app-title {
       font-size: 1.75rem;
       font-weight: 800;
@@ -440,6 +503,16 @@
 
     .card-pt .feature-icon {
       color: var(--pt-gold);
+    }
+
+    .card-hb .feature-icon {
+      color: var(--hb-aqua);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .card-hb .feature-icon {
+        color: var(--hb-deep);
+      }
     }
 
     .feature-text strong {
@@ -825,6 +898,15 @@
 
         <div class="card-actions">
           <div class="action-group">
+            <a href="https://apps.apple.com/app/id6802455503" class="btn btn-primary" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download on the App Store
+            </a>
             <a href="../policies/fc/privacy.html" class="btn btn-secondary">
               <svg viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -937,6 +1019,15 @@
 
         <div class="card-actions">
           <div class="action-group">
+            <a href="https://apps.apple.com/app/id6807615206" class="btn btn-primary" target="_blank"
+              rel="noopener">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download on the App Store
+            </a>
             <a href="../policies/pt/privacy.html" class="btn btn-secondary">
               <svg viewBox="0 0 24 24">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -946,6 +1037,119 @@
           </div>
           <div class="tech-specs">
             <span>iPhone, iPad & Apple Watch · Built with SwiftUI</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- App 3: Hydration Break (in development) -->
+      <article class="app-card card-hb is-upcoming" id="hydration-break">
+        <div class="app-header">
+          <div class="icon-wrapper">
+            <img src="assets/hydration-break.png" alt="Hydration Break App Icon" class="app-logo" width="88" height="88"
+              loading="lazy" />
+          </div>
+          <div class="app-meta">
+            <div class="platform-badges">
+              <span class="platform-badge upcoming">Coming Soon</span>
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">iPadOS</span>
+              <span class="platform-badge">Apple Health</span>
+              <span class="platform-badge">Siri</span>
+            </div>
+            <h2 class="app-title">Hydration Break</h2>
+            <p class="app-tagline">One-tap water logging with a goal that reads the weather</p>
+          </div>
+        </div>
+
+        <p class="app-description">
+          A water tracker built around a single idea: logging a drink should take one tap. Seven beverage types carry
+          their own hydration values, so coffee counts for less and electrolytes for more, while reminders arrive on
+          your schedule and stay quiet overnight. Currently in development for iPhone and iPad.
+        </p>
+
+        <ul class="features-list">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2.5S6 9.5 6 14a6 6 0 0 0 12 0c0-4.5-6-11.5-6-11.5z"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>One-Tap Quick Log</strong>
+              <span>Custom cup presets log a drink instantly, and a fluid wave that responds to the tilt of your phone
+                shows the day's progress at a glance.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="12" y1="2" x2="12" y2="5"></line>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line>
+                <line x1="19" y1="12" x2="22" y2="12"></line>
+                <line x1="5.6" y1="5.6" x2="7.7" y2="7.7"></line>
+                <line x1="16.3" y1="16.3" x2="18.4" y2="18.4"></line>
+                <line x1="5.6" y1="18.4" x2="7.7" y2="16.3"></line>
+                <line x1="16.3" y1="7.7" x2="18.4" y2="5.6"></line>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Weather-Adjusted Goal</strong>
+              <span>An optional adjustment raises your target on hot or humid days using Apple Weather, and your active
+                energy can lift it further on the days you move more.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Apple Health & Siri</strong>
+              <span>Every drink writes to Health as dietary water, and "Hey Siri, log a drink" records one hands-free
+                without opening the app.</span>
+            </div>
+          </li>
+
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <div class="feature-text">
+              <strong>Your History Stays Put</strong>
+              <span>Drinks, goals and streaks live in local SwiftData storage. No account, no analytics, and no servers
+                of ours for any of it to reach.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="tags-row" aria-label="Feature Tags">
+          <span class="tag-chip">Quick Log Presets</span>
+          <span class="tag-chip">Smart Reminders</span>
+          <span class="tag-chip">Quiet Hours</span>
+          <span class="tag-chip">Streaks & Trends</span>
+          <span class="tag-chip">Apple Health Sync</span>
+          <span class="tag-chip">Siri Shortcuts</span>
+          <span class="tag-chip">Zero Tracking</span>
+        </div>
+
+        <div class="card-actions">
+          <div class="action-group">
+            <a href="../policies/hb/privacy.html" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Privacy Policy
+            </a>
+          </div>
+          <div class="tech-specs">
+            <span>In development · Built with SwiftUI &amp; SwiftData</span>
           </div>
         </div>
       </article>
